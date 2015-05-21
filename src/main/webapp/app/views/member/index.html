@@ -1,0 +1,15 @@
+<div class="member_index_view container-fluid full_screen" ng-controller="controller.member.index">
+	<div class="row miv_tab_box">
+		<div class="miv_tab_item_box col-xs-4 " ng-repeat="nav in navs" ng-click="selectTab($index)" ng-class="{miv_tab_item_select:$index == selectedTabIndex,miv_tab_item_not_select:$index != selectedTabIndex}">
+			<div class="tab_item tab_item_icon tab_item_icon_{{nav.icon}}"></div> <!-- 			<span>{{nav.text}}</span> -->
+			<div ng-show="$index == 1 && unread" class="chat_count"></div>
+			<div class="bottom_line_box">
+					<span class="bottom_line">&nbsp;</span>
+			</div>
+		</div>
+		<div class="tab_box_bottom_line"></div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12 miv_content" ui-view></div>
+	</div>
+</div>

@@ -1,0 +1,87 @@
+<div class="healthrecord_picture_list_view container-fluid full_screen" ng-controller="controller.healthrecord.picture.list">
+	<!-- 页头 -->
+	<!-- 	<nav class="navbar navbar-default navbar-fixed-top"> -->
+	<!-- 		<ul class="container nav_item_box nav nav-tabs"> -->
+	<!-- 			<li class="col-xs-{{nav.width}} nav_item" ng-class="{active : selectedTabIndex == $index}" ng-repeat="nav in navs" ng-click="getPicList($index)"><a>{{nav.text}}</a></li> -->
+	<!-- 		</ul> -->
+	<!-- 	</nav> -->
+
+	<!-- 	<ul class="navbar-default row hplv_tab_box border_bottom"> -->
+	<!-- 		<li class="hplv_tab_item col-xs-{{nav.width}}" ng-repeat="nav in navs" ng-click="getPicList($index)"><a ng-class="{hplv_tab_item_select:$index == selectedTabIndex}">{{nav.text}}</a> -->
+	<!-- 			<div ng-show="$index == 1 && unread" class="chat_count"></div></li> -->
+	<!-- 	</ul> -->
+
+
+	<div class="navbar-default row hplv_tab_box border_bottom">
+		<div class="nav_selected_btn" ng-click="toggleSelected($event)">{{isSelected?'取消':'选择'}}</div>
+
+	</div>
+
+	<div class="row" ng-class="{selected_on:isSelected,selected_off:!isSelected}">
+		<div class="col-xs-12 hplv_content">
+
+			<div scroller-box class="full_screen" data-iscroll-instance="healthrecordPictureScroll">
+				<div class="pic_list_box">
+					<div>
+						<div class="pic_item">
+							<div class="pic_time pic_time_today">
+								<span>今天</span>
+							</div>
+							<div class="pic_upload_img" ng-click="uploadPic()">
+								<span class="glyphicon glyphicon-camera" aria-hidden="true"></span>
+							</div>
+						</div>
+					</div>
+					<div ng-repeat="pictureMap in pictureList">
+						<div class="pic_item" ng-repeat="picture in pictureMap.list">
+							<div class="pic_time">
+								<div class="pic_time_box" ng-if="$index == 0 && !pictureMap.isToday">
+									<div class="pic_time_day">
+										<span>{{pictureMap.day}}</span>
+									</div>
+									<div class="pic_time_month">
+										<span>{{pictureMap.month}}月</span>
+									</div>
+									<!-- <div class="pic_time_year" ng-if="pictureMap.year"> -->
+									<!-- <span>{{pictureMap.year}}年</span> -->
+									<!-- </div> -->
+								</div>
+							</div>
+							<div class="item_selected_box" ng-click="selectItem(picture.id)">
+								<div class="item_selected_inbox" ng-class="{item_selected:selectedMap[picture.id],item_not_selected:!selectedMap[picture.id]}">
+									<span class="glyphicon glyphicon-ok"></span>
+								</div>
+							</div>
+							<div class="pic_img" ng-click="previewImage(picture)">
+								<div class="pic_img_loading loading" ng-show="picture.loading"></div>
+								<img wx-img wx-img-src="picture.url" />
+							</div>
+							<div class="pic_mark">
+								{{picture.mark | defaultValueFilter:'无备注'}}<span ng-click="toMark(picture)" class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+							</div>
+							<!-- <div class="to_mark" ng-click="toMark(picture)"> -->
+							<!-- </div> -->
+							<!-- <a class="to_mark" ng-click="delete(picture)">删除</a> -->
+						</div>
+					</div>
+					<div class="bottom_loading">
+						<div ng-show="!notMorePic">正在加载中...</div>
+						<div ng-show="notMorePic">没有更多历史记录</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- 底部-删除。。。 -->
+	<div class="row bottom_box border_top" ng-show="isSelected">
+		<div class="col-xs-2">
+		</div>
+		<div class="col-xs-8 change_pic_type_box" ng-click="changePicType($event)">
+			<span>移动至</span>
+		</div>
+		<div class="col-xs-2 delete_btn" ng-click="deletePics($event)">
+			<span class="glyphicon glyphicon-trash" ></span>
+		</div>
+	</div>
+</div>

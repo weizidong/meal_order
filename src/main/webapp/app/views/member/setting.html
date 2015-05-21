@@ -1,0 +1,25 @@
+<div class="member_setting_view" ng-controller="controller.member.setting">
+	<div scroller-box class="full_screen wxbg">
+		<div class="container-fluid">
+			<div class="row member border_bottom border_top" ng-click="goMemberInfo()">
+				<div class="col-xs-3 top_2">
+					<img ng-src="{{member.headimgurl}}" onError="this.src='/static/common/img/default_member.jpg';" class="img img-rounded" />
+				</div>
+				<div class="col-xs-7 top">
+					<span><div class="member_name">{{member.name}}</div>{{member.sex ==2 ? '女':'男'}}，{{member.birthday | ageFilter}}岁</span>
+				</div>
+				<span class="glyphicon glyphicon-menu-right text-right col-xs-2 top_1" aria-hidden="true"></span>
+			</div>
+			<div class="setting_box">
+				<div class="row setting_info info_top" ng-click="goHealthrecord()">
+					<span class="col-xs-10 info">健康档案</span>
+					<div class="col-xs-2 text-right glyphicon glyphicon-menu-right set_to"></div>
+				</div>
+				<div class="row setting_info" ng-click="goSharedMember()">
+					<span class="col-xs-8 info">家人共享</span>
+					<p class="col-xs-4 text-right text_color">{{count}}人&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-menu-right set_to"></span></p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

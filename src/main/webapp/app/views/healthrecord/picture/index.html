@@ -1,0 +1,43 @@
+<div class="healthrecord_picture_view container-fluid wxbg full_screen" ng-controller="controller.healthrecord.picture.index">
+	<!-- 页头 -->
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<ul class="container nav_item_box nav nav-tabs">
+			<li class="col-xs-{{nav.width}} nav_item" ng-class="{active : selectedTabIndex == $index}" ng-repeat="nav in navs" ng-click="getPicList($index)"><a>{{nav.text}}</a></li>
+		</ul>
+	</nav>
+	<!-- 提示消息 -->
+	<div class="alert alert-warning alert-dismissible alert_box" ng-show="alert" ng-click="close()">
+		<button type="button" class="close">
+			<span class="alert_close">&times;</span>
+		</button>
+		<strong>没有上传图片!</strong>
+	</div>
+	<!-- 图片展示 -->
+	<div carousel data="PictureList.length" data-interval="false" class="row carousel slide">
+		<div class="carousel-inner">
+			<div class="item {{$index == 0?'active':''}}" ng-repeat="pic in PictureList" index="{{$index}}">
+				<div class="info row">
+				    <span class="col-xs-12 info_text">备注:{{pic.mark}}</span>
+<!-- 					<span class="col-xs-5 info_text">上传日期:{{pic.created | date:'yyyy/MM/dd HH:mm'}}</span> -->
+				</div>
+                <div class="img_box" >
+                    <img src="{{pic.url}}" class="carousel_pic" ng-click="showImg(pic.url);">
+                </div>
+			</div>
+		</div>
+	</div>
+	<!-- 页脚 -->
+	<nav class="navbar navbar-fixed-bottom">
+		<div class="picture_foot">
+			<div class="col-xs-4" ng-click="choosePicType()">
+				<span class="btn btn-success">分类</span>
+			</div>
+			<div class="col-xs-4" ng-click="updatePicMark()">
+				<span class="btn btn-success">备注</span>
+			</div>
+			<div class="col-xs-4" ng-click="deletePic()">
+				<span class="btn btn-danger">删除</span>
+			</div>
+		</div>
+	</nav>
+</div>

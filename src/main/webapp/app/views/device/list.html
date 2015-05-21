@@ -1,0 +1,36 @@
+<div class="device_list_view"
+	ng-controller="controller.device.list" onselectstart="return false">
+	
+    <div scroller-box class="full_screen wxbg">
+    	<div class="container-fluid device_list_view_box">
+    	
+			<!-- 设备列表 -->
+			<div class="dlv_device_item row border_top" ng-class="{border_bottom:$last}" ng-repeat="device in deviceList" ng-click="goDeviceMsg(device.id,device.deviceType)">
+				
+				<div class="img col-xs-2 col-xs-offset-1" aria-hidden="true">
+				  <img class="img" src="{{device.picture}}">
+				</div>
+				
+				<div class="col-xs-7">
+					<div class="row device_name">{{device.deviceName}}</div>
+					<div class="row device_sn">SN: {{device.sn}}</div>
+				</div>
+				
+				<div class="col-xs-1">
+                    <span class="glyphicon glyphicon-menu-right"></span>
+                </div>
+				
+			</div>
+			
+			
+			<div class="row prompt_msg">
+				<div class="text-center"><!-- 通过微信扫一扫添加设备  --></div>
+			</div>
+			
+		    <!-- 添加设备 -->
+			<div class="device_list_title row">
+				<div class="btn btn-success  col-xs-10 col-xs-offset-1" ng-click="bindDevice()">添加设备</div>
+			</div>
+		</div>
+	</div>
+</div>

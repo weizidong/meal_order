@@ -1,0 +1,59 @@
+<div class="records_index_view" ng-controller="controller.records.pedometer_chart">
+
+	<div scroller-box class="full_screen container-fluid">
+
+		<!-- 左右箭头切换加载图表数据 -->
+		<div class="row arrow_top">
+			<div class="col-xs-1 col-xs-offset-1" ng-click="goBack()"><span class="glyphicon glyphicon-menu-left" aria-hidden="true" ng-class="{true:'open',false:'close'}[flag]"></span></div>
+	  		<div class="col-xs-6 col-xs-offset-1 text-center head_title">{{message}}</div>
+	  		<div class="col-xs-2 text-right" ng-click="goTo()"><span class="glyphicon glyphicon-menu-right" aria-hidden="true" ng-class="{true:'open'}[count!=0]"></span></div>
+		</div>
+	
+		<!-- 运动记录明细折线图表 -->
+		<div class="row arrow_top">
+			<div id="steps_canvas_detail" class="col-xs-12"></div>
+		</div>
+		<!-- 平均步数记录 -->
+		<div class="row chart_top">
+			<div class="col-xs-12">
+				<table class="table table-hover" frame=void>
+			 		<tbody>
+			      		<tr>
+			         		<th>平均</th>
+			        	 	<td><div class="default_color">{{avgData.steps | defaultValueFilter:'--'}}</div><div class="records_index_view unit">步</div></td>
+			        	 	<td><div class="default_color">{{avgData.distance | defaultValueFilter:'--'}}</div><div class="records_index_view unit">公里</div></td>
+			        	 	<td><div class="default_color">{{avgData.calories | defaultValueFilter:'--'}}</div><div class="records_index_view unit">大卡</div></td>
+			        	 	<td></td>
+			      		</tr>
+			      		<tr>
+			         		<th>最低</th>
+			         		<td><div class="default_color">{{minData.steps | defaultValueFilter:'--'}}</div><div class="records_index_view unit">步</div></td>
+			        	 	<td><div class="default_color">{{minData.distance | defaultValueFilter:'--'}}</div><div class="records_index_view unit">公里</div></td>
+			        	 	<td><div class="default_color">{{minData.calories | defaultValueFilter:'--'}}</div><div class="records_index_view unit">大卡</div></td>
+			        	 	<td><div ng-if="minData">{{minData.measurementDate | date:'M-d'}}</div><div class="records_index_view unit">{{minData.measurementDate | timeHourFilter}}</div></td>
+			      		</tr>
+			      		<tr>
+			         		<th>最高</th>
+			         		<td><div class="default_color">{{maxData.steps | defaultValueFilter:'--'}}</div><div class="records_index_view unit">步</div></td>
+			        	 	<td><div class="default_color">{{maxData.distance | defaultValueFilter:'--'}}</div><div class="records_index_view unit">公里</div></td>
+			        	 	<td><div class="default_color">{{maxData.calories | defaultValueFilter:'--'}}</div><div class="records_index_view unit">大卡</div></td>
+			        	 	<td><div ng-if="maxData">{{maxData.measurementDate | date:'M-d'}}</div><div class="records_index_view unit">{{maxData.measurementDate | timeHourFilter}}</div></td>
+			      		</tr>
+			   		</tbody>
+				</table>
+			</div>
+		</div>
+	
+	</div>
+	
+	<!-- 周、月、年、历史按钮组 -->
+	<div class="btn-group btn-group-justified navbar-fixed-bottom" role="group">
+		<div class="btn-group" role="group" ng-repeat="nav in navs">
+			<button ng-click="selectTimeTab({{nav.type}})" class="btn btn-default footer_border_no_right" ng-class="{true:'choose',false:'notchoose'}[type==nav.type]" type="button">{{nav.text}}</button>
+		</div>
+		<div class="btn-group" role="group">
+			<button ng-click="gotoBpHistory()" type="button" class="btn btn-default footer_border_no_right"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span></button>
+		</div>
+	</div>
+
+</div>

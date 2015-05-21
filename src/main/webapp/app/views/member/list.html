@@ -1,0 +1,65 @@
+
+<div class="member_list_view" ng-controller="controller.member.list">
+
+    <div scroller-box class="full_screen wxbg">
+        <div class="container-fluid mlv_box">
+            <div class="title row border_bottom">
+                <div class="btn btn-success  col-xs-10 col-xs-offset-1" ng-click="addMember()">添加成员</div>
+            </div>
+            <!-- 成员列表 -->
+            <div ng-if="memberList.length == 0" class="item row center">暂无成员</div>
+            <div class="item row border_bottom member_item" ng-repeat="member in memberList">
+                <div class="col-xs-3 member_item_content text-center" ng-click="settingMember($index)">
+                    <img ng-src="{{member.headimgurl | defaultValueFilter:'/static/common/img/default_member.jpg'}}" onError="this.src='/static/common/img/default_member.jpg';" class="img-rounded">
+                    <div ng-show="memberUnread[member.id]" class="chat_count"></div>
+                </div>
+                <div class="col-xs-8 member_item_content" ng-click="goMemberIndex($index)">
+                    <div class="row member_item_content_textbox">
+                        <div class="col-xs-6 member_name">{{member.name}}</div>
+                        <div class="col-xs-6 text-right date">{{memberLastRecord[member.id].record.measurementDate | date : 'MM月dd日 HH:mm'}}</div>
+                    </div>
+                    
+                     <div ng-show="memberLastRecord[member.id].type == 'bp'">
+	                    <div class="row member_item_content_textbox">
+	                        <div class="col-xs-4 text-left">
+	                            <bp-color sp="memberLastRecord[member.id].record.systolicPressure" dp="memberLastRecord[member.id].record.diastolicPressure"></bp-color>
+	                        </div>
+	                        <div class="col-xs-2 text-left">
+	                            <hr-color hr="memberLastRecord[member.id].record.heartRate"></hr-color>
+	                        </div>
+	                        <div class="col-xs-6 text-left">
+	                        	<bp-state-color bpstate="memberLastRecord[member.id].record.bpState">{{memberLastRecord[member.id].record.bpState | bpStateFilter}}</bp-state-color>
+	                        </div>
+	                    </div>
+	                </div>
+                    
+                    <div ng-show="memberLastRecord[member.id].type == 'step'">
+	                    <div class="row member_item_content_textbox">
+		                    <div class="col-xs-4 text-center"><span class="default_color">{{memberLastRecord[member.id].record.steps}}</span><span class="unit">步</span></div>
+		                    <div class="col-xs-4 text-center"><span class="default_color">{{memberLastRecord[member.id].record.distance}}</span><span class="unit">公里</span></div>
+	                        <div class="col-xs-4 text-center"><span class="default_color">{{memberLastRecord[member.id].record.calories}}</span><span class="unit">大卡</span></div>
+	                    </div>
+                    </div>
+                    
+                    <div ng-show="memberLastRecord[member.id].type == 'weight'">
+	                    <div class="row member_item_content_textbox">
+	                        <div class="col-xs-4 text-center"> 
+		                        <wt-color weight="memberLastRecord[member.id].record.weight" bmi="memberLastRecord[member.id].record.bmi"></wt-color><span class="unit">kg</span>
+		                    </div>
+		                   	<div class="col-xs-4 text-center"> 
+	                            <bmi-color bmi="memberLastRecord[member.id].record.bmi"></bmi-color>
+	                        </div>
+	                        <div class="col-xs-4 text-center">
+	                        	<wt-state-color wtstate="memberLastRecord[member.id].record.wtState">{{memberLastRecord[member.id].record.wtState | weightStateFilter}}</wt-state-color>
+	                    	</div>
+	                    </div>
+                    </div>
+                    
+                </div>
+                <div class="col-xs-1 member_item_content_right" ng-click="goMemberIndex($index)">
+                    <span class="glyphicon glyphicon-menu-right"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

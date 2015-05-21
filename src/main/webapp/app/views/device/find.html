@@ -1,0 +1,25 @@
+<div class="device_find_view" ng-controller="controller.device.find">
+
+	<div scroller-box class="full_screen wxbg">
+		<div class="container-fluid device_find_view_box jumbotron">
+			<div class="row">
+			    <span class="col-xs-10 col-xs-offset-1 find_text find_padding">测量一笔血压，微信端收到测量消息后，请在五分钟内填写以下值：</span>
+			</div>
+			<div class="row">
+				<span class="col-xs-3 col-xs-offset-1 find_input_1 find_text_2 find_text_center">高压</span>
+				<span class="col-xs-1 find_text_1"></span>  
+				<span class="col-xs-3 find_input_2 find_text_2 find_text_center">低压</span> 
+				<span class="col-xs-3 find_input_2 find_text_2 find_text_center">心率</span>
+			</div>
+			<div class="row find_padding">
+				<span class="col-xs-3 col-xs-offset-1 find_input_1"><input class="form-control" type="text" ng-model="bpRecord.systolicPressure"/></span>
+				<span class="col-xs-1 find_text_1 find_text_center">/</span> 
+				<span class="col-xs-3 find_input_2"><input class="form-control" type="text" ng-model="bpRecord.diastolicPressure"/></span>
+				<span class="col-xs-3 find_input_2"><input class="form-control find_input_2" type="text" ng-model="bpRecord.heartRate"/></span>
+			</div>
+			<div class="row find_padding">
+				<div class="btn btn-success  col-xs-8 col-xs-offset-2" ng-click="findDevice()">找回设备</div>
+			</div>
+		</div>
+	</div>
+</div>

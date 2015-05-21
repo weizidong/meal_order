@@ -1,0 +1,53 @@
+<div class="doctor_info_view" ng-controller="controller.doctor.info"  onselectstart="return false">
+    <div scroller-box class="wxbg full_screen">
+    	<div class="container-fluid doctor_info_view_box" ng-if="doctor">
+			<div id="doctor" class="row border_bottom border_top">
+				<div class="col-xs-4 ">
+<!-- 				<img id="doctor_img" class="img-circle" ng-src="{{doctor.headimgurl | defaultValueFilter:'/static/common/img/default_member.jpg'}}"  onError="this.src='/static/common/img/default_member.jpg';" /> -->
+<img id="doctor_img" class="img-circle" src={{doctor.headimgurl}}  />
+				</div>
+				<div class="col-xs-8">
+					<div class="row doctor_name_title"><b>{{doctor.name|defaultValueFilter:'乐心医生'}}&nbsp;{{doctor.title|defaultValueFilter:'未填写'}}</b></div>
+				</div>
+			</div>
+			<div id="departments" class="row border_bottom">
+				<div class="col-xs-4">
+					<span class="glyphicon glyphicon-bookmark"></span>&nbsp;&nbsp;科室
+				</div>
+				<div class="col-xs-8 departments">
+					{{doctor.departments|defaultValueFilter:'未填写'}}
+				</div>
+			</div>
+			<div id="hospital" class="row border_bottom">
+				<div class="col-xs-4">
+					<span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;医院
+				</div>
+				<div class="col-xs-8 hospital">
+					{{doctor.hospital|defaultValueFilter:'未填写'}}
+				</div>
+			</div>
+
+			<div id="intruduction" class="row border_bottom">
+				<div class="col-xs-4">
+					<span class="glyphicon glyphicon-edit"></span>&nbsp;&nbsp;介绍
+				</div>
+				<div class="col-xs-8 intruduction">
+					{{doctor.introduction|defaultValueFilter:'未填写'}}
+				</div>
+			</div>
+		<!-- 	<div id="allow" class="row"> -->
+		<!-- 		&nbsp;&nbsp;允许{{doctor.name}}查看的档案 -->
+		<!-- 	</div> -->
+		<!-- 	<div id="father" class="row border_bottom" ng-repeat="member in members"> -->
+		<!-- 		<div class="col-xs-3"><img class="img-circle parent_img" src={{member.headimgurl}} /></div> -->
+		<!-- 		<div class="col-xs-3">{{member.name}}</div> -->
+		<!-- 		<div class="col-xs-3 col-xs-offset-2"><img class="img" src="img/on.png" /></div> -->
+		<!-- 	</div> -->
+			<div id="delete" class="row">
+				 <button type="button" ng-click="delRelation(doctor.id)" class="btn btn-danger col-xs-10 col-xs-offset-1">删除关联</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+

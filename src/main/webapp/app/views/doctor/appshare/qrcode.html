@@ -1,0 +1,33 @@
+<div class="doctor_appshare_qrcode_view" ng-controller="controller.doctor.appshare.qrcode" onselectstart="return false">
+	<div scroller-box class="full_screen wxbg">
+		<div class="container-fluid">
+		
+			<div class="row top_2">
+				<div class="col-xs-12 describe">Hi，我是<span class="doctor_name">{{doctor.name}}</span>医生，<br/>想及时咨询我用下面的方法更好 </div>
+			</div>
+			
+			<div class="row">
+				<HR class="hr" >
+			</div>
+			
+			<div class="row top_1">
+				<div class="col-xs-12 align_center detail">长按图片识别图中二维码 </div>
+			</div>
+			
+			<div class="row top_1">
+				<div class="col-xs-10 col-xs-offset-1"> <img class="img" ng-src="{{qrcode_pic_url}}"/></div>
+			</div>
+			
+			
+			<!-- 医生信息 begin -->
+			<div class="row top_2">
+				<div class="col-xs-6 col-xs-offset-3 align_left detail">{{doctor.name}}</div>
+				<div class="col-xs-6 col-xs-offset-3 align_left detail">{{doctor.title}}</div>
+				<div class="col-xs-6 col-xs-offset-3 align_left detail">{{doctor.hospital}}</div>
+				<div class="col-xs-6 col-xs-offset-3 align_left detail">乐心号：{{doctor.lifesenseId}}</div>
+			</div>
+			<!-- 医生信息 end -->
+			
+		</div>
+	</div>
+</div>

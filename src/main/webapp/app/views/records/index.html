@@ -1,0 +1,20 @@
+<div class="records_index_view" ng-controller="controller.records.index">
+
+	<div scroller-box class="full_screen wxbg">
+		<div class="container-fluid riv_chat_box">
+			<div class="riv_chat" redraw-overview-chart chart-type="chartType" chart-data="chartData">
+				<!-- 血压、运动、体重记录概览图表 -->
+				<div class="row chart_top" ng-repeat="chart in charts">
+					<div id="{{chart.id}}" class="col-xs-12" ng-click="gotoChartIndex('{{chart.href}}',$index)"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- 周、月、年按钮组 -->
+	<div class="riv_date_selected btn-group btn-group-justified" role="group">
+		<div class="btn-group" role="group" ng-repeat="nav in navs">
+			<button ng-click="selectTimeTab('{{nav.type}}')" class="btn btn-default footer_border_no_right" ng-class="{true:'choose',false:'notchoose'}[index==nav.type]" type="button">{{nav.text}}</button>
+		</div>
+	</div>
+</div>
