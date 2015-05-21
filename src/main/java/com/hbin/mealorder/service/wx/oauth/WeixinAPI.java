@@ -1,4 +1,4 @@
-package com.hbin.service.wx.oauth;
+package com.hbin.mealorder.service.wx.oauth;
 
 /**
  * 微信公众平台api接口常量

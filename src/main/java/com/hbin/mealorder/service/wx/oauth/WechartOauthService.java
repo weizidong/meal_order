@@ -1,9 +1,9 @@
-package com.hbin.service.wx.oauth;
+package com.hbin.mealorder.service.wx.oauth;
 
 import java.io.IOException;
 import java.text.MessageFormat;
 
-import com.hbin.service.wx.oauth.dto.AccessToken;
+import com.hbin.mealorder.service.wx.oauth.dto.AccessToken;
 import com.hbin.util.HttpClientManager;
 import com.lifesense.framework.common.jackson.JacksonUtils;
 import com.lifesense.framework.common.log.LoggerAdapter;

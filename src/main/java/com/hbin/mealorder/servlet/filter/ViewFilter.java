@@ -13,8 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.hbin.mealorder.service.wx.WechartServiceNoService;
-import com.hbin.service.wx.oauth.WechartOauthService;
-import com.hbin.service.wx.oauth.dto.AccessToken;
+import com.hbin.mealorder.service.wx.oauth.WechartOauthService;
+import com.hbin.mealorder.service.wx.oauth.dto.AccessToken;
 import com.hbin.util.IpUtil;
 import com.lifesense.framework.common.log.LoggerAdapter;
 import com.lifesense.framework.common.log.LoggerAdapterFacory;

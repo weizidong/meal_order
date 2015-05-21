@@ -1,4 +1,4 @@
-package com.hbin.service.wx.oauth.dto;
+package com.hbin.mealorder.service.wx.oauth.dto;
 
 import java.io.Serializable;
 
