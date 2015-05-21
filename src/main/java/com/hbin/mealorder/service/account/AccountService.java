@@ -1,5 +1,7 @@
 package com.hbin.mealorder.service.account;
 
-public class AccountService {
+import com.hbin.mealorder.model.dao.account.AccountDao;
 
+public class AccountService {
+	private AccountDao accountDao = new AccountDao();
 }
