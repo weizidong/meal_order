@@ -21,5 +21,8 @@ define([], function() {
 
 	route('accountIndex', '/member/list','/account/index');
 	
+
+	route('mealList', '/meal/list');
+	
 	return routes;
 });
