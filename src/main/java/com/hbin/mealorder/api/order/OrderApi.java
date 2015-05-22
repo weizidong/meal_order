@@ -90,8 +90,8 @@ public class OrderApi {
 	}
 
 	@POST
-	@Path("get_account_ordes")
-	public List<MealOrderItem> getAccountOrders(GetOrderItemParam param) {
+	@Path("get_account_orde_items")
+	public List<MealOrderItem> getAccountOrderItems(GetOrderItemParam param) {
 		return orderService.getAccountOrderItems(param.getAccountId(), param.getOrderId());
 	}
 }
