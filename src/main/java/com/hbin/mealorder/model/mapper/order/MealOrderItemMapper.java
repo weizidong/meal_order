@@ -24,6 +24,6 @@ public interface MealOrderItemMapper extends BaseMapper<MealOrderItem, String> {
 	 * @param orderId
 	 * @return
 	 */
-	List<MealOrderItem> query(@Param("orderId")String orderId,@Param("accountId")String accountId);
+	List<MealOrderItem> query(@Param("accountId")String accountId,@Param("orderId")String orderId);
 
 }

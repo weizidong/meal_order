@@ -41,7 +41,8 @@ define([ 'app', 'services/api/account/accountApi', 'services/api/order/orderApi'
 				return;
 			}
 			$location.path('/meal/list').search({
-				accountId : accountId
+				accountId : accountId,
+				mealOrderId : $scope.mealOrder.id
 			});
 		};
 	} ]);

@@ -85,6 +85,7 @@ public class OrderService {
 		if (StringUtil.isEmpty(orderItem.getAccountId()) || StringUtil.isEmpty(orderItem.getMealId()) || StringUtil.isEmpty(orderItem.getMealOrderId())) {
 			throw new WebException(ResponseCode.不允许为空);
 		}
+		// 检查mealOrderId是否已经结束点餐
 		orderItem.setCreated(new Date());
 		orderItemDao.create(orderItem);
 		return orderItem;
