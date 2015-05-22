@@ -39,13 +39,13 @@
 
 	<!-- 全局别名设置，在映射文件中只需写别名，而不必写出整个类路径 -->
 	<typeAliases>
-		<package name="com.lifesense.framework.demo.model.entity" />
+		<package name="com.hbin.mealorder.model.entity" />
 	</typeAliases>
 
 	<!-- 插件 -->
 	<plugins>
 		<!-- 自动生成CRUD及ResultMap -->
-		<plugin interceptor="com.lifesense.framework.model.interceptor.generatesql.AutoMapperInterceptor"></plugin>
+		<plugin interceptor="com.lifesense.framework.mybatis.interceptor.generatesql.AutoMapperInterceptor"></plugin>
 	</plugins>
 
 	<environments default="development">
@@ -66,19 +66,12 @@
 				<property name="poolPingConnectionsNotUsedFor" value="3600000" />
 			</dataSource>
 		</environment>
-		<environment id="jta">
-			<transactionManager type="com.lifesense.framework.model.util.MyTransactionFactory">
-			</transactionManager>
-			<dataSource type="JNDI">
-				<property name="data_source" value="jdbc/lifesense-framework-demo-model-ds" />
-			</dataSource>
-		</environment>
 
 	</environments>
 
 	<!-- 非注解的sql映射文件配置，如果使用mybatis注解，该mapper无需配置，但是如果mybatis注解中包含@resultMap注解，则mapper必须配置，给resultMap注解使用 -->
 	<mappers>
-		<package name="com.lifesense.framework.demo.model.mapper" />
+		<package name="com.hbin.mealorder.model.mapper" />
 	</mappers>
 
 </configuration>
