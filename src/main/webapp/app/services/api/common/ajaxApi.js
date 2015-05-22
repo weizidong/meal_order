@@ -2,9 +2,11 @@
 
 define([ 'app' ], function(app) {
 
-	app.register.service('ajaxService', [ '$http', 'cfpLoadingBar', 'blockUI','$location', function($http, cfpLoadingBar, blockUI,$location) {
+	var baseUrl = 'api/';
+	
+	app.register.service('ajaxApi', [ '$http', 'cfpLoadingBar', 'blockUI','$location', function($http, cfpLoadingBar, blockUI,$location) {
 		var urlParams = $location.search();
-		var sessionId = urlParams.sessionId;
+		var openId = urlParams.openId;
 		var LoadingType = {
 			bar : 'bar',
 			block : 'block'
@@ -59,7 +61,7 @@ define([ 'app' ], function(app) {
 
 			opts = _.extend({}, defaultOpts, opts);
 
-			opts.url = url;
+			opts.url = baseUrl + url;
 			// 如果ajaxSuccess为空就将success覆盖ajaxSuccess
 			opts.ajaxSuccess = opts.ajaxSuccess || opts.success;
 			// 如果localStorageSuccess为空就将success覆盖localStorageSuccess
@@ -146,9 +148,9 @@ define([ 'app' ], function(app) {
 				blockUI.start();
 			}
 
-			$http.post(url, opts.data, {
+			$http.post(opts.url, opts.data, {
 				ignoreLoadingBar : opts.loadingType != LoadingType.bar,
-				headers: { 'sessionId': sessionId}
+				headers: { 'openId': openId}
 			}).success(opts.baseAjaxSuccess).error(opts.error);
 
 		};
