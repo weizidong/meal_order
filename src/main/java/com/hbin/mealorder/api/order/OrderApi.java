@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Singleton;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
@@ -26,6 +27,7 @@ public class OrderApi {
 	 * 
 	 * @return
 	 */
+	@POST
 	@Path("get_meal_order")
 	public MealOrder getMealOrder() {
 		return orderService.getMealOrder();
@@ -36,6 +38,7 @@ public class OrderApi {
 	 * 
 	 * @return
 	 */
+	@POST
 	@Path("creat_meal_order")
 	public MealOrder creatMealOrder() {
 		return orderService.creatMealOrder();
@@ -46,6 +49,7 @@ public class OrderApi {
 	 * 
 	 * @return
 	 */
+	@POST
 	@Path("complete_meal_order")
 	public MealOrder completeMeal() {
 		return orderService.completeMeal();
@@ -56,6 +60,7 @@ public class OrderApi {
 	 * 
 	 * @return
 	 */
+	@POST
 	@Path("order_meal")
 	public MealOrderItem orderMealItem(MealOrderItem orderItem) {
 		return orderService.orderMealItem(orderItem);
@@ -67,6 +72,7 @@ public class OrderApi {
 	 * @param orderItem
 	 * @param request
 	 */
+	@POST
 	@Path("delete_order_meal")
 	public void deleteOrderMeal(MealOrderItem orderItem) {
 		orderService.deleteOrderMeal(orderItem);
@@ -77,11 +83,13 @@ public class OrderApi {
 	 * 
 	 * @return
 	 */
+	@POST
 	@Path("update_order_meal")
 	public void updateOrderMeal(MealOrderItem orderItem) {
 		orderService.updateOrderMeal(orderItem);
 	}
-	
+
+	@POST
 	@Path("get_account_ordes")
 	public List<MealOrderItem> getAccountOrders(GetOrderItemParam param) {
 		return orderService.getAccountOrderItems(param.getAccountId(), param.getOrderId());
