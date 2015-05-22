@@ -44,7 +44,11 @@ public class OrderService {
 	 * @return
 	 */
 	public MealOrder creatMealOrder() {
-		MealOrder order = MealOrder.generate();
+		MealOrder order = orderDao.getLast();
+		if(order != null && order.getStatus() == MealOrderStatus.正在点餐.getCode()){
+			throw new WebException(ResponseCode.错误请求);
+		}
+		order = MealOrder.generate();
 		orderDao.create(order);
 		logger.debug(order);
 		return order;
