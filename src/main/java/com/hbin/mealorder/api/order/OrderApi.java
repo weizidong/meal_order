@@ -26,4 +26,24 @@ public class OrderApi {
 	public MealOrder getMealOrder() {
 		return orderService.getMealOrder();
 	}
+
+	/**
+	 * 创建订单
+	 * 
+	 * @return
+	 */
+	@Path("creat_meal_order")
+	public MealOrder creatMealOrder() {
+		return orderService.creatMealOrder();
+	}
+
+	/**
+	 * 结束点餐
+	 * 
+	 * @return
+	 */
+	@Path("complete_meal_order")
+	public MealOrder completeMeal() {
+		return orderService.completeMeal();
+	}
 }

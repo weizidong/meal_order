@@ -3,6 +3,7 @@ package com.hbin.mealorder.model.entity.order;
 import java.util.Date;
 import java.util.List;
 
+import com.hbin.mealorder.model.entity.order.enums.MealOrderStatus;
 import com.lifesense.framework.mybatis.entity.id.UUIDEntity;
 import com.lifesense.framework.mybatis.interceptor.generatesql.annotation.Id;
 import com.lifesense.framework.mybatis.interceptor.generatesql.annotation.Transient;
@@ -60,6 +61,15 @@ public class MealOrder implements UUIDEntity {
 
 	public void setItems(List<MealOrderItem> items) {
 		this.items = items;
+	}
+
+	/** 生成订单 */
+	public static MealOrder generate() {
+		MealOrder order = new MealOrder();
+		order.setCreated(new Date());
+		order.setStatus(MealOrderStatus.正在点餐.getCode());
+		order.setTotal(0.0);
+		return order;
 	}
 
 	@Override
