@@ -63,6 +63,15 @@ public class Account implements UUIDEntity {
 		this.headimg = headimg;
 	}
 
+	public static Account generate(String openId) {
+		Account account = new Account();
+		account.setOpenId(openId);
+		// TODO
+		account.setHeadimg(null);
+		account.setNickname("这是什么鬼？");
+		return account;
+	}
+
 	@Override
 	public String toString() {
 		return "Account [id=" + id + ", openId=" + openId + ", nickname=" + nickname + ", remarkName=" + remarkName + ", headimg=" + headimg + "]";
