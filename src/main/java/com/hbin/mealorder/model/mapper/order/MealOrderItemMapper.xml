@@ -3,8 +3,24 @@
 <mapper namespace="com.hbin.mealorder.model.mapper.order.MealOrderItemMapper">
 	<!-- 查询订单详情 -->
 	<select id="getByOrderId">
-	FROM meal_order_item
-	WHERE meal_order_id=#{orderId}
-	GROUP BY meal_id
+		FROM meal_order_item
+		WHERE meal_order_id=#{orderId}
+		GROUP BY meal_id
+	</select>
+
+	<!-- 查询订单详情 -->
+	<select id="query">
+		FROM 
+			meal_order_item
+		<where> 
+			<if test="orderId != null">
+				meal_order_id=#{orderId}
+			</if>
+			<if test="accountId != null">
+				AND account_id=#{accountId}
+			</if>
+		</where>
+		ORDER BY
+			created ASC
 	</select>
 </mapper>  

@@ -67,4 +67,16 @@ public class OrderService {
 		order.setItems(items);
 		return order;
 	}
+
+	/**
+	 * 获取订单年明细
+	 * 
+	 * @param accountId
+	 * @param orderId
+	 *            可选，指定订单id
+	 * @return
+	 */
+	public List<MealOrderItem> getAccountOrderItems(String accountId, String orderId) {
+		return orderItemDao.query(accountId, orderId);
+	}
 }

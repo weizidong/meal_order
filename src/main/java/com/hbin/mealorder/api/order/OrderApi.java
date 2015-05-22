@@ -1,5 +1,7 @@
 package com.hbin.mealorder.api.order;
 
+import java.util.List;
+
 import javax.inject.Singleton;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
@@ -8,6 +10,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
+import com.hbin.mealorder.api.order.dto.GetOrderItemParam;
 import com.hbin.mealorder.model.entity.order.MealOrder;
 import com.hbin.mealorder.model.entity.order.MealOrderItem;
 import com.hbin.mealorder.service.order.OrderService;
@@ -79,5 +82,10 @@ public class OrderApi {
 	@Path("update_order_meal")
 	public MealOrderItem updateOrderMeal(MealOrderItem orderItem, @Context HttpServletRequest request) {
 		return null;
+	}
+
+	@Path("get_account_ordes")
+	public List<MealOrderItem> getAccountOrders(GetOrderItemParam param) {
+		return orderService.getAccountOrderItems(param.getAccountId(), param.getOrderId());
 	}
 }
