@@ -1,0 +1,18 @@
+.meal_list_view{}
+
+.meal_list_view .list_box{
+	padding-top: 1em;
+	padding-bottom: 3em;
+}
+
+.meal_list_view .list_item{
+	padding-top: 1em;
+	padding-bottom: 1em;
+	background-color: #FFF;
+}
+
+
+.meal_list_view .list_item span{
+	font-weight: bolder;
+	font-size:1.2em;	
+}

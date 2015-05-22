@@ -1,7 +1,20 @@
 <div class="meal_list_view full_screen" ng-controller="controller.meal.list">
 
 	<div scroller-box class="full_screen wxbg">
-		<div class="container-fluid list_box"></div>
+		<div class="container-fluid list_box">
+
+			<div class="row border_top list_item {{$last?'border_bottom':''}}" ng-repeat="meal in mealList" ng-click="selectMeal(meal)">
+				<div class="col-xs-6">
+					<span>{{meal.name}}</span>
+				</div>
+				<div class="col-xs-5 text-right">
+					<span>{{meal.price}}元</span>
+				</div>
+				<div class="col-xs-1 text-right">
+                    <span class="glyphicon glyphicon-menu-right"></span>
+				</div>
+			</div>
+		</div>
 	</div>
 
 
