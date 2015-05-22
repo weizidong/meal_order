@@ -19,7 +19,7 @@ define([], function() {
 	// url : '/member/memberList'
 	// });
 
-	route('clientIndex', '/client/index');
+	route('accountIndex', '/member/list','/account/index');
 	
 	return routes;
 });

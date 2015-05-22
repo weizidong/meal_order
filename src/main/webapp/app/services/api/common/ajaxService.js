@@ -2,7 +2,7 @@
 
 define([ 'app' ], function(app) {
 
-	app.service('ajaxService', [ '$http', 'cfpLoadingBar', 'blockUI','$location', function($http, cfpLoadingBar, blockUI,$location) {
+	app.register.service('ajaxService', [ '$http', 'cfpLoadingBar', 'blockUI','$location', function($http, cfpLoadingBar, blockUI,$location) {
 		var urlParams = $location.search();
 		var sessionId = urlParams.sessionId;
 		var LoadingType = {
