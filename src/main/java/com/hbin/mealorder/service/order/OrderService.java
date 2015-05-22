@@ -10,6 +10,7 @@ import com.hbin.mealorder.model.dao.order.MealOrderItemDao;
 import com.hbin.mealorder.model.entity.order.MealOrder;
 import com.hbin.mealorder.model.entity.order.MealOrderItem;
 import com.hbin.mealorder.model.entity.order.enums.MealOrderStatus;
+import com.lifesense.framework.common.util.StringUtil;
 import com.lifesense.framework.rest.exception.WebException;
 import com.lifesense.framework.rest.response.ResponseCode;
 
@@ -32,6 +33,7 @@ public class OrderService {
 			return null;
 		}
 		List<MealOrderItem> items = orderItemDao.getByOrderId(mealOrder.getId());
+		logger.debug(items);
 		mealOrder.setItems(items);
 		return mealOrder;
 	}
@@ -76,7 +78,7 @@ public class OrderService {
 	 * @return
 	 */
 	public MealOrderItem orderMealItem(MealOrderItem orderItem) {
-		if (orderItem.getAccountId() == null || orderItem.getMealId() == null || orderItem.getMealOrderId() == null) {
+		if (StringUtil.isEmpty(orderItem.getAccountId()) || StringUtil.isEmpty(orderItem.getMealId()) || StringUtil.isEmpty(orderItem.getMealOrderId())) {
 			throw new WebException(ResponseCode.不允许为空);
 		}
 		orderItem.setCreated(new Date());
@@ -90,7 +92,7 @@ public class OrderService {
 	 * @param orderItem
 	 */
 	public void deleteOrderMeal(MealOrderItem orderItem) {
-		if (orderItem.getId() == null) {
+		if (StringUtil.isEmpty(orderItem.getId())) {
 			throw new WebException(ResponseCode.不允许为空);
 		}
 		orderItemDao.delete(orderItem.getId());
@@ -103,7 +105,7 @@ public class OrderService {
 	 * @return
 	 */
 	public void updateOrderMeal(MealOrderItem orderItem) {
-		if (orderItem.getId() == null || orderItem.getAccountId() == null || orderItem.getMealOrderId() == null) {
+		if (StringUtil.isEmpty(orderItem.getId()) || StringUtil.isEmpty(orderItem.getAccountId()) || StringUtil.isEmpty(orderItem.getMealOrderId()) || StringUtil.isEmpty(orderItem.getMealId())) {
 			throw new WebException(ResponseCode.不允许为空);
 		}
 		orderItemDao.update(orderItem);
