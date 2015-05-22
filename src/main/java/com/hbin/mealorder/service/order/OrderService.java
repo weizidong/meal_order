@@ -1,5 +1,6 @@
 package com.hbin.mealorder.service.order;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -66,5 +67,45 @@ public class OrderService {
 		logger.debug(items);
 		order.setItems(items);
 		return order;
+	}
+
+	/**
+	 * 点餐
+	 * 
+	 * @param orderItem
+	 * @return
+	 */
+	public MealOrderItem orderMealItem(MealOrderItem orderItem) {
+		if (orderItem.getAccountId() == null || orderItem.getMealId() == null || orderItem.getMealOrderId() == null) {
+			throw new WebException(ResponseCode.不允许为空);
+		}
+		orderItem.setCreated(new Date());
+		orderItemDao.create(orderItem);
+		return orderItem;
+	}
+
+	/**
+	 * 取消点餐
+	 * 
+	 * @param orderItem
+	 */
+	public void deleteOrderMeal(MealOrderItem orderItem) {
+		if (orderItem.getId() == null) {
+			throw new WebException(ResponseCode.不允许为空);
+		}
+		orderItemDao.delete(orderItem.getId());
+	}
+
+	/**
+	 * 更新点餐
+	 * 
+	 * @param orderItem
+	 * @return
+	 */
+	public void updateOrderMeal(MealOrderItem orderItem) {
+		if (orderItem.getId() == null || orderItem.getAccountId() == null || orderItem.getMealOrderId() == null) {
+			throw new WebException(ResponseCode.不允许为空);
+		}
+		orderItemDao.update(orderItem);
 	}
 }

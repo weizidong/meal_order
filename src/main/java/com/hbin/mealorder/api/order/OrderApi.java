@@ -1,11 +1,9 @@
 package com.hbin.mealorder.api.order;
 
 import javax.inject.Singleton;
-import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
 import com.hbin.mealorder.model.entity.order.MealOrder;
@@ -56,8 +54,8 @@ public class OrderApi {
 	 * @return
 	 */
 	@Path("order_meal")
-	public MealOrderItem orderMealItem(MealOrderItem orderItem, @Context HttpServletRequest request) {
-		return null;
+	public MealOrderItem orderMealItem(MealOrderItem orderItem) {
+		return orderService.orderMealItem(orderItem);
 	}
 
 	/**
@@ -66,18 +64,18 @@ public class OrderApi {
 	 * @param orderItem
 	 * @param request
 	 */
-	@Path("cancel_order_meal")
-	public void cancelOrderMeal(MealOrderItem orderItem, @Context HttpServletRequest request) {
-
+	@Path("delete_order_meal")
+	public void deleteOrderMeal(MealOrderItem orderItem) {
+		orderService.deleteOrderMeal(orderItem);
 	}
 
 	/**
-	 * 更换点餐
+	 * 更新点餐
 	 * 
 	 * @return
 	 */
 	@Path("update_order_meal")
-	public MealOrderItem updateOrderMeal(MealOrderItem orderItem, @Context HttpServletRequest request) {
-		return null;
+	public void updateOrderMeal(MealOrderItem orderItem) {
+		orderService.updateOrderMeal(orderItem);
 	}
 }
