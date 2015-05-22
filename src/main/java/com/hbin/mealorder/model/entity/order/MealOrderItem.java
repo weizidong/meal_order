@@ -13,6 +13,8 @@ public class MealOrderItem implements UUIDEntity {
 	@Id
 	private String id;
 
+	private String mealOrderId;
+
 	private String accountId;
 
 	private String mealId;
@@ -59,6 +61,19 @@ public class MealOrderItem implements UUIDEntity {
 
 	public void setCreated(Date created) {
 		this.created = created;
+	}
+
+	public String getMealOrderId() {
+		return mealOrderId;
+	}
+
+	public void setMealOrderId(String mealOrderId) {
+		this.mealOrderId = mealOrderId;
+	}
+
+	@Override
+	public String toString() {
+		return "MealOrderItem [id=" + id + ", mealOrderId=" + mealOrderId + ", accountId=" + accountId + ", mealId=" + mealId + ", quantity=" + quantity + ", created=" + created + "]";
 	}
 
 }

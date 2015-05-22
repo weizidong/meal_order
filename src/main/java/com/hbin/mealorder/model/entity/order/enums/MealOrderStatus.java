@@ -6,13 +6,13 @@ public enum MealOrderStatus {
 
 	结束点餐(1);
 
-	private int code;
+	private Integer code;
 
-	MealOrderStatus(int code) {
+	MealOrderStatus(Integer code) {
 		this.code = code;
 	}
 
-	public int getCode() {
+	public Integer getCode() {
 		return code;
 	}
 
