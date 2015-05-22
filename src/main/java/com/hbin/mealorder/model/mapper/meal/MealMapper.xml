@@ -4,5 +4,7 @@
 	
 	<select id="getAll">
 		FROM meal
+		ORDER BY
+			price ASC
 	</select>
 </mapper>  
