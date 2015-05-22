@@ -58,4 +58,9 @@ public class Meal implements UUIDEntity {
 
 		return meal;
 	}
+
+	@Override
+	public String toString() {
+		return "Meal [id=" + id + ", name=" + name + ", price=" + price + ", deleted=" + deleted + "]";
+	}
 }
