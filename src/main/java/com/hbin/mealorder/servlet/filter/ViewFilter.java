@@ -12,6 +12,8 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.hbin.mealorder.model.entity.account.Account;
+import com.hbin.mealorder.service.account.AccountService;
 import com.hbin.mealorder.service.wx.WechartServiceNoService;
 import com.hbin.mealorder.service.wx.oauth.WechartOauthService;
 import com.hbin.mealorder.service.wx.oauth.dto.AccessToken;
@@ -19,6 +21,7 @@ import com.hbin.util.IpUtil;
 import com.lifesense.framework.common.log.LoggerAdapter;
 import com.lifesense.framework.common.log.LoggerAdapterFacory;
 import com.lifesense.framework.common.util.StringUtil;
+import com.lifesense.framework.mybatis.util.MyBatisUtil;
 
 /**
  * Servlet Filter implementation class WxSessionFilter
@@ -26,6 +29,7 @@ import com.lifesense.framework.common.util.StringUtil;
 public class ViewFilter implements Filter {
 
 	private static LoggerAdapter log = LoggerAdapterFacory.getLogger(ViewFilter.class);
+	private AccountService accountService = new AccountService();
 
 	/**
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
@@ -71,18 +75,6 @@ public class ViewFilter implements Filter {
 
 				log.debug("授权成功-获取微信用户信息成功。" + (System.currentTimeMillis() - startTs));
 
-				startTs = System.currentTimeMillis();
-
-				log.debug("微信授权成功-保存会话信息");
-
-				log.debug("微信授权成功-保存会话信息成功。" + (System.currentTimeMillis() - startTs));
-
-				startTs = System.currentTimeMillis();
-
-				log.debug("微信授权成功-redirect");
-
-				// MyBatisUtil.commitSession();
-
 				// wxJSApi不支持h5，将 /view/member/list 重定向为 /view/#/member/list
 				redirect(httpRequest, httpResponse, accessToken.getOpenid());
 
@@ -92,16 +84,6 @@ public class ViewFilter implements Filter {
 
 			}
 
-			// 获取用户信息
-
-			log.debug("获取用户信息【缓存】");
-
-			startTs = System.currentTimeMillis();
-
-			log.debug("获取用户信息【缓存】成功。" + (System.currentTimeMillis() - startTs));
-
-			// 如果缓存key值为空,获取缓存UserInfo为空,重定向到 微信 授权
-
 			log.debug("重定向到微信授权");
 
 			// 授权
@@ -109,10 +91,11 @@ public class ViewFilter implements Filter {
 			return;
 
 		} catch (Exception e) {
+			MyBatisUtil.rollback();
 			e.printStackTrace();
 			failure(httpRequest, httpResponse);
 		} finally {
-			// MyBatisUtil.closeSession();
+			MyBatisUtil.close();
 		}
 	}
 
@@ -127,6 +110,10 @@ public class ViewFilter implements Filter {
 
 	private void redirect(HttpServletRequest httpRequest, HttpServletResponse httpResponse, String openId) throws IOException, ServletException {
 
+		MyBatisUtil.begin();
+		Account account = accountService.saveAccount(openId);
+		MyBatisUtil.commit();
+
 		String redirect = getRequestUrl(httpRequest);
 		redirect = redirect.replaceFirst("/view", "/view/#");
 		if (httpRequest.getQueryString() != null) {
@@ -135,6 +122,7 @@ public class ViewFilter implements Filter {
 			redirect += "?";
 		}
 		redirect += "openId=" + openId;
+		redirect += "&accountId=" + account.getId();
 		log.debug("redirect=" + redirect);
 		// TODO:这里会耗时？？
 		httpResponse.sendRedirect(redirect);
