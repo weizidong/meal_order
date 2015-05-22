@@ -19,6 +19,9 @@ public class AddMeal {
 	@Test
 	public void addMeal(){
 		mealDao.create(Meal.generate("火腿香蛋", 8.0));
+		mealDao.create(Meal.generate("叉烧香蛋", 8.0));
+		mealDao.create(Meal.generate("牛肉炒饭", 9.0));
+		mealDao.create(Meal.generate("酸辣土豆丝", 9.0));
 	}
 	
 }
