@@ -10,6 +10,11 @@ define([ 'app', 'services/api/account/accountApi', 'services/api/order/orderApi'
 		orderApi.getMealOrder({
 			success : function(mealOrder) {
 				$scope.mealOrder = mealOrder;
+				
+				if(!mealOrder){
+					$scope.accountOrders = [];
+					return;
+				}
 
 				// 获取帐号的订单
 				getAccountOrdeItems();
@@ -31,6 +36,10 @@ define([ 'app', 'services/api/account/accountApi', 'services/api/order/orderApi'
 
 		// 点餐
 		$scope.orderMeal = function() {
+			if(!$scope.mealOrder || $scope.mealOrder.status != 0){
+				alert("亲，还没有开始点餐。")
+				return;
+			}
 			$location.path('/meal/list').search({
 				accountId : accountId
 			});
