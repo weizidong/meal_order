@@ -10,7 +10,7 @@
 
 	<!-- 查询订单详情 -->
 	<select id="query">
-		FROM 
+		@SELECT FROM 
 			meal_order_item
 		<where> 
 			<if test="orderId != null">
