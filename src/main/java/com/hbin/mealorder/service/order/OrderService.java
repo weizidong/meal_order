@@ -28,8 +28,7 @@ public class OrderService {
 	 * @return
 	 */
 	public MealOrder getMealOrder() {
-		MealOrder mealOrder = orderDao.getByStatus(MealOrderStatus.正在点餐.getCode());
-		logger.debug(mealOrder);
+		MealOrder mealOrder = orderDao.getLast();
 		if (mealOrder == null) {
 			return null;
 		}
@@ -57,11 +56,13 @@ public class OrderService {
 	 * @return
 	 */
 	public MealOrder completeMeal() {
-		MealOrder order = orderDao.getByStatus(MealOrderStatus.正在点餐.getCode());
+		MealOrder order = orderDao.getLast();
 		if (order == null) {
 			throw new WebException(ResponseCode.资源不存在);
 		}
-		logger.debug(order);
+		if (order.getStatus() == MealOrderStatus.结束点餐.getCode()) {
+			throw new WebException(ResponseCode.错误请求);
+		}
 		order.setStatus(MealOrderStatus.结束点餐.getCode());
 		orderDao.update(order);
 		List<MealOrderItem> items = orderItemDao.getByOrderId(order.getId());
