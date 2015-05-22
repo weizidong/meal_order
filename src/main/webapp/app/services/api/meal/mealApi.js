@@ -1,6 +1,6 @@
 define([ 'app', 'services/api/common/ajaxApi' ], function(app) {
 
-	app.register.service('mealService', [ 'ajaxApi', function(ajaxApi) {
+	app.register.service('mealApi', [ 'ajaxApi', function(ajaxApi) {
 
 		/**
 		 * 获取所有

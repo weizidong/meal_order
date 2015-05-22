@@ -4,7 +4,7 @@ define([ 'app' ], function(app) {
 
 	var baseUrl = 'api/';
 	
-	app.register.service('ajaxService', [ '$http', 'cfpLoadingBar', 'blockUI','$location', function($http, cfpLoadingBar, blockUI,$location) {
+	app.register.service('ajaxApi', [ '$http', 'cfpLoadingBar', 'blockUI','$location', function($http, cfpLoadingBar, blockUI,$location) {
 		var urlParams = $location.search();
 		var openId = urlParams.openId;
 		var LoadingType = {
