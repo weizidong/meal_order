@@ -4,8 +4,10 @@ import java.util.Date;
 
 import com.lifesense.framework.mybatis.entity.id.UUIDEntity;
 import com.lifesense.framework.mybatis.interceptor.generatesql.annotation.Id;
+import com.lifesense.framework.mybatis.interceptor.generatesql.annotation.Table;
 
 @SuppressWarnings("serial")
+@Table
 public class MealOrder implements UUIDEntity {
 
 	@Id
