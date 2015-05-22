@@ -2,8 +2,10 @@ package com.hbin.mealorder.model.entity.meal;
 
 import com.lifesense.framework.mybatis.entity.id.UUIDEntity;
 import com.lifesense.framework.mybatis.interceptor.generatesql.annotation.Id;
+import com.lifesense.framework.mybatis.interceptor.generatesql.annotation.Table;
 
 @SuppressWarnings("serial")
+@Table
 public class Meal implements UUIDEntity {
 
 	@Id
@@ -12,7 +14,7 @@ public class Meal implements UUIDEntity {
 	private String name;
 
 	private Double price;
-	
+
 	private Boolean deleted;
 
 	public String getId() {
@@ -47,4 +49,13 @@ public class Meal implements UUIDEntity {
 		this.deleted = deleted;
 	}
 
+	public static Meal generate(String name, double price) {
+		Meal meal = new Meal();
+
+		meal.setName(name);
+		meal.setPrice(price);
+		meal.setDeleted(false);
+
+		return meal;
+	}
 }

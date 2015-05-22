@@ -7,6 +7,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import com.hbin.mealorder.model.entity.order.MealOrder;
+import com.hbin.mealorder.model.entity.order.MealOrderItem;
 import com.hbin.mealorder.service.order.OrderService;
 
 @Path("order")
@@ -45,5 +46,9 @@ public class OrderApi {
 	@Path("complete_meal_order")
 	public MealOrder completeMeal() {
 		return orderService.completeMeal();
+	}
+
+	public MealOrderItem orderMeal() {
+		return null;
 	}
 }
