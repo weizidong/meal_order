@@ -14,7 +14,7 @@ public class Meal implements UUIDEntity {
 	private String name;
 
 	private Double price;
-
+	
 	private Boolean deleted;
 
 	public String getId() {

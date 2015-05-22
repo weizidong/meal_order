@@ -8,10 +8,10 @@ import javax.ws.rs.core.MediaType;
 
 import com.hbin.mealorder.service.account.AccountService;
 
-@Path("account")
-@Singleton
-@Consumes(MediaType.APPLICATION_JSON)
-@Produces(MediaType.APPLICATION_JSON)
+//@Path("account")
+//@Singleton
+//@Consumes(MediaType.APPLICATION_JSON)
+//@Produces(MediaType.APPLICATION_JSON)
 public class AccountApi {
 	private AccountService accountService = new AccountService();
 }
