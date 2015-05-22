@@ -4,6 +4,10 @@ import com.lifesense.framework.mybatis.entity.id.UUIDEntity;
 import com.lifesense.framework.mybatis.interceptor.generatesql.annotation.Id;
 import com.lifesense.framework.mybatis.interceptor.generatesql.annotation.Table;
 
+/**
+ * @author WeiZiDong
+ *
+ */
 @SuppressWarnings("serial")
 @Table
 public class Account implements UUIDEntity {
@@ -58,4 +62,10 @@ public class Account implements UUIDEntity {
 	public void setHeadimg(String headimg) {
 		this.headimg = headimg;
 	}
+
+	@Override
+	public String toString() {
+		return "Account [id=" + id + ", openId=" + openId + ", nickname=" + nickname + ", remarkName=" + remarkName + ", headimg=" + headimg + "]";
+	}
+
 }
