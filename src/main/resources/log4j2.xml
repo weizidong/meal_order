@@ -11,6 +11,9 @@
 		<Logger name="com.lifesense" level="debug" additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>
+		<Logger name="com.hbin" level="debug" additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
 		<Root level="error">
 			<AppenderRef ref="Console" />
 		</Root>
