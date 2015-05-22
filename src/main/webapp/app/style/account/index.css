@@ -1,18 +1,24 @@
-.account_index_view{
+.account_index_view {
 	
 }
 
-.account_index_view .list_scroller_box{
+.account_index_view .list_scroller_box {
 	position: absolute;
 	top: 0;
 	bottom: 3.5em;
 	width: 100%;
 }
 
-.account_index_view .order_maal_box{
+.account_index_view .order_maal_box {
 	padding-top: 0.5em;
 	position: absolute;
 	bottom: 0;
 	height: 3.5em;
 	width: 100%;
+}
+
+.account_index_view .tip_text span {
+	font-size: 1.2em;
+	font-weight: bolder;
+	line-height: 3em;
 }
