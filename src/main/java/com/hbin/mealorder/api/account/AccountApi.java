@@ -22,5 +22,6 @@ public class AccountApi {
 	@Path("get_account/{accountId}")
 	public Account getAccount(@PathParam("accountId") String accountId) {
 		return accountService.getAccount(accountId);
+
 	}
 }
