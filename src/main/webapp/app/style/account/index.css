@@ -9,6 +9,18 @@
 	width: 100%;
 }
 
+.account_index_view .item_box{
+	padding-top: 1em;
+	padding-bottom: 1em;
+	background-color: #FFF;
+}
+
+.account_index_view .meal_name span{
+	line-height: 34px;
+	font-weight: bolder;
+	font-size: 1.2em;
+}
+
 .account_index_view .order_maal_box {
 	padding-top: 0.5em;
 	position: absolute;

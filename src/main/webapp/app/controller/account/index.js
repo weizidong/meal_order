@@ -10,8 +10,8 @@ define([ 'app', 'services/api/account/accountApi', 'services/api/order/orderApi'
 		orderApi.getMealOrder({
 			success : function(mealOrder) {
 				$scope.mealOrder = mealOrder;
-				
-				if(!mealOrder){
+
+				if (!mealOrder) {
 					$scope.accountOrders = [];
 					return;
 				}
@@ -26,7 +26,7 @@ define([ 'app', 'services/api/account/accountApi', 'services/api/order/orderApi'
 			orderApi.getAccountOrdeItems({
 				data : {
 					accountId : accountId,
-					orderId : $scope.mealOrder?$scope.mealOrder.id:''
+					orderId : $scope.mealOrder ? $scope.mealOrder.id : ''
 				},
 				success : function(accountOrders) {
 					$scope.accountOrders = accountOrders;
@@ -36,7 +36,7 @@ define([ 'app', 'services/api/account/accountApi', 'services/api/order/orderApi'
 
 		// 点餐
 		$scope.orderMeal = function() {
-			if(!$scope.mealOrder || $scope.mealOrder.status != 0){
+			if (!$scope.mealOrder || $scope.mealOrder.status != 0) {
 				alert("亲，还没有开始点餐。")
 				return;
 			}
@@ -44,6 +44,26 @@ define([ 'app', 'services/api/account/accountApi', 'services/api/order/orderApi'
 				accountId : accountId,
 				mealOrderId : $scope.mealOrder.id
 			});
+		};
+
+		// 删除
+		$scope.deleteOrderMeal = function(orderitem) {
+			if (confirm("确定删除" + orderitem.mealName + "吗？")) {
+
+				orderApi.deleteOrderMeal({
+					data : orderitem,
+					success : function() {
+						for (var i = 0, l = $scope.accountOrders.length; i < l; i++) {
+							var item = $scope.accountOrders[i];
+							if (item.id == orderitem.id) {
+								$scope.accountOrders.splice(i, 1);
+								break;
+							}
+						}
+					}
+				});
+
+			}
 		};
 	} ]);
 });

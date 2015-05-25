@@ -14,5 +14,10 @@ define([ 'app', 'services/api/common/ajaxApi' ], function(app) {
 		this.orderMeal = function(opts){
 			ajaxApi.postJson('order/order_meal',opts);
 		};
+		
+		// 删除
+		this.deleteOrderMeal = function(opts){
+			ajaxApi.postJson('order/delete_order_meal',opts);
+		};
 	} ]);
 });
