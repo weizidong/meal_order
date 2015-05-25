@@ -2,9 +2,14 @@ package com.hbin.mealorder.service.account;
 
 import com.hbin.mealorder.model.dao.account.AccountDao;
 import com.hbin.mealorder.model.entity.account.Account;
+import com.hbin.mealorder.service.wx.user.WechartUserService;
+import com.hbin.mealorder.service.wx.user.dto.WeixinUserInfo;
+import com.lifesense.framework.common.util.StringUtil;
 
 public class AccountService {
 	private AccountDao accountDao = new AccountDao();
+
+	WechartUserService wechartUserService = new WechartUserService();
 
 	/**
 	 * 保存Account
@@ -13,11 +18,34 @@ public class AccountService {
 	 * @return
 	 */
 	public Account saveAccount(String openId) {
+		
 		Account account = accountDao.getByOpenId(openId);
-		if (account == null) {
+		boolean isNew = account == null;
+
+		if (isNew) {
 			account = Account.generate(openId);
-			accountDao.create(account);
+
 		}
+
+		boolean isUpdate = StringUtil.isEmpty(account.getNickname());
+
+		if (isUpdate) {
+			WeixinUserInfo userInfo = wechartUserService.getUserInfo(openId, null);
+			if (userInfo != null) {
+				String headimgurl = userInfo.getHeadimgurl();
+				String nickname = userInfo.getNickname();
+
+				account.setHeadimg(headimgurl);
+				account.setNickname(nickname);
+			}
+		}
+
+		if (isNew) {
+			accountDao.create(account);
+		} else if (isUpdate) {
+			accountDao.update(account);
+		}
+
 		return account;
 	}
 
@@ -30,4 +58,5 @@ public class AccountService {
 	public Account getAccount(String accountId) {
 		return null;
 	}
+
 }

@@ -66,9 +66,6 @@ public class Account implements UUIDEntity {
 	public static Account generate(String openId) {
 		Account account = new Account();
 		account.setOpenId(openId);
-		// TODO
-		account.setHeadimg(null);
-		account.setNickname("这是什么鬼？");
 		return account;
 	}
 
