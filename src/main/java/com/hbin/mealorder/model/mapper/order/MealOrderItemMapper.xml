@@ -9,17 +9,15 @@
 	</select>
 
 	<!-- 查询订单详情 -->
-	<select id="query">
-		@SELECT FROM 
+	<select id="getAccountOrderItems">
+		@SELECT 
+		,meal.name as mealName
+		FROM 
 			meal_order_item
-		<where> 
-			<if test="orderId != null">
-				meal_order_id=#{orderId}
-			</if>
-			<if test="accountId != null">
-				AND account_id=#{accountId}
-			</if>
-		</where>
+			INNER JOIN meal ON meal.id = meal_order_item.meal_id
+		WHERE
+			meal_order_id=#{orderId}
+			AND account_id=#{accountId}
 		ORDER BY
 			created ASC
 	</select>

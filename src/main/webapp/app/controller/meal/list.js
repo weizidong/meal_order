@@ -25,7 +25,7 @@ define([ 'app', 'services/api/meal/mealApi', 'services/api/order/orderApi', 'css
 						quantity : 1
 					},
 					success : function() {
-
+						window.history.go(-1);
 					}
 				});
 			}

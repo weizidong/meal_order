@@ -125,7 +125,7 @@ public class OrderService {
 	 * @return
 	 */
 	public List<MealOrderItem> getAccountOrderItems(String accountId, String orderId) {
-		return orderItemDao.query(accountId, orderId);
+		return orderItemDao.getAccountOrderItems(accountId, orderId);
 
 	}
 

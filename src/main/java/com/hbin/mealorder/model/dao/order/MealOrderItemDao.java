@@ -18,7 +18,7 @@ public class MealOrderItemDao extends BaseDAO<MealOrderItem, String, MealOrderIt
 		return getMapper().getByOrderId(orderId);
 	}
 
-	public List<MealOrderItem> query(String accountId, String orderId) {
-		return getMapper().query(accountId,orderId);
+	public List<MealOrderItem> getAccountOrderItems(String accountId, String orderId) {
+		return getMapper().getAccountOrderItems(accountId,orderId);
 	}
 }

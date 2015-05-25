@@ -2,19 +2,23 @@
 
 	<div scroller-box class="list_scroller_box wxbg">
 		<div class="container-fluid list_box">
+			<!-- 已点餐 -->
+			<div class="row text-center tip_text" ng-show="mealOrder.status == 0 && accountOrders && accountOrders.length > 0">
+				<div class="col-xs-12"><span>亲，你已经点了下列的菜哦~~~</span></div>
+			</div>
 			<div class="row" ng-repeat="orderitem in accountOrders">
-				<div class="col-xs-12">{{orderitem.mealId}}{{orderitem.quantity}}</div>
+				<div class="col-xs-12">{{orderitem.mealName}}{{orderitem.quantity}}</div>
 			</div>
 			<!-- 未点餐 -->
 			<div class="row text-center tip_text">
+				<div class="col-xs-12" ng-show="!accountOrders">
+					<span>正在加载中。</span>
+				</div>
 				<div class="col-xs-12" ng-show="mealOrder.status != 0 && accountOrders && accountOrders.length == 0">
 					<span>亲，还木有开始点餐哦~~~</span>
 				</div>
 				<div class="col-xs-12" ng-show="mealOrder.status == 0 && accountOrders && accountOrders.length == 0">
 					<span>亲，开始点餐咯~~~</span>
-				</div>
-				<div class="col-xs-12" ng-show="!accountOrders">
-					<span>正在加载中。</span>
 				</div>
 			</div>
 			<div class="row"></div>
