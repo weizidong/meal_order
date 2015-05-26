@@ -20,7 +20,7 @@ define([], function() {
 	// });
 
 	route('accountIndex', '/member/list','/account/index');
-	
+	route('orderList','/order/list');
 
 	route('mealList', '/meal/list');
 	

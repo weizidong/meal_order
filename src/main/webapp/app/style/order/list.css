@@ -1,0 +1,18 @@
+.order_list_view{}
+
+.order_list_view .list_box{
+	padding-top: 1em;
+	padding-bottom: 3em;
+}
+
+.order_list_view .list_item{
+	padding-top: 1em;
+	padding-bottom: 1em;
+	background-color: #FFF;
+}
+
+
+.order_list_view .list_item span{
+	font-weight: bolder;
+	font-size:1.2em;	
+}
