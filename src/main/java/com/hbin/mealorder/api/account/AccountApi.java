@@ -1,5 +1,7 @@
 package com.hbin.mealorder.api.account;
 
+import java.util.Map;
+
 import javax.inject.Singleton;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
@@ -23,5 +25,13 @@ public class AccountApi {
 	public Account getAccount(@PathParam("accountId") String accountId) {
 		return accountService.getAccount(accountId);
 
+	}
+
+	@POST
+	@Path("set_remark_name")
+	public void setRemarkName(Map<String, String> params) {
+		String accountId = params.get("accountId");
+		String remarkName = params.get("remarkName");
+		accountService.setRemarkName(accountId, remarkName);
 	}
 }

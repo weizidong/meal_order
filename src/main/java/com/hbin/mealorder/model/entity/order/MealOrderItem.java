@@ -2,6 +2,8 @@ package com.hbin.mealorder.model.entity.order;
 
 import java.util.Date;
 
+import com.hbin.mealorder.model.entity.account.Account;
+import com.hbin.mealorder.model.entity.meal.Meal;
 import com.lifesense.framework.mybatis.entity.id.UUIDEntity;
 import com.lifesense.framework.mybatis.interceptor.generatesql.annotation.Id;
 import com.lifesense.framework.mybatis.interceptor.generatesql.annotation.Table;
@@ -23,9 +25,11 @@ public class MealOrderItem implements UUIDEntity {
 	private Integer quantity;
 
 	private Date created;
-	
+
 	@Transient
-	private String mealName;
+	private Meal meal;
+	@Transient
+	private Account account;
 
 	public String getId() {
 		return id;
@@ -80,12 +84,20 @@ public class MealOrderItem implements UUIDEntity {
 		return "MealOrderItem [id=" + id + ", mealOrderId=" + mealOrderId + ", accountId=" + accountId + ", mealId=" + mealId + ", quantity=" + quantity + ", created=" + created + "]";
 	}
 
-	public String getMealName() {
-		return mealName;
+	public Meal getMeal() {
+		return meal;
 	}
 
-	public void setMealName(String mealName) {
-		this.mealName = mealName;
+	public void setMeal(Meal meal) {
+		this.meal = meal;
+	}
+
+	public Account getAccount() {
+		return account;
+	}
+
+	public void setAccount(Account account) {
+		this.account = account;
 	}
 
 }

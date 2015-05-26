@@ -1,0 +1,118 @@
+<div ng-class="{dialog_close:!opts,dialog_show:opts}" class="modal fade dialog_text wxbg">
+<!-- 模态框（Modal） -->
+	<div class="dialog modal-dialog dialog_alert">
+		<div class="container-fluid modal-content {{opts.type == 'input'?'modal_input':''}}">
+			<!-- 文本消息显示 -->
+			<div ng-if="opts.type == 'alert'" class="modal-body row">
+			     <span class="col-xs-12 text-center">{{opts.msg}}</span>
+			</div>
+			<!-- 文本输入 -->
+			<div ng-if="opts.type == 'input'" class="row dialog_input">
+			    <div class="input col-xs-{{opts.unit?'10':'12'}}"><input class="form-control" placeholder="{{!opts.input ? '请填写...':''}}" type="text" name="iptext" ng-model="opts.input" ng-change="validate()"/></div>
+			    <div class="input col-xs-2"><span class="{{opts.unit?'input-group-addon':''}}">{{opts.unit}}</span></div>
+			</div>
+			<!-- 单选列表 -->
+			<div ng-if="opts.type == 'radio'" class="row modal-body">
+				<div class="col-xs-12">
+					<ul class="list-group checked-list-box">
+                        <div scroller-box class="wxbg scroller_max_h">
+						<li ng-click="onChoose($index)" ng-repeat="option in opts.options" class="list-group-item {{opts.checked == option[opts.valueField]?'checked_background_color':''}}" style="cursor: pointer;"> 
+						    <span class="state-icon glyphicon {{opts.checked == option[opts.valueField]?'glyphicon-check checked_text_color':'glyphicon-unchecked'}}"></span> <span class="text_width">{{option[opts.textField]}}</span>{{opts.unit}}
+						</li>
+					    </div>
+					</ul>
+				</div>
+			</div>
+			
+			<!-- 多选框列表 -->
+			<div ng-if="opts.type == 'checkbox'" class="row modal-body">
+        		<div class="col-xs-12 options_list">
+	        		<ul class="list-group checked-list-box">
+	        		    <div scroller-box class="wxbg scroller_max_h">
+	                	<li ng-click="onCheck($index)" ng-repeat="option in opts.options" class="list-group-item" ng-class="{true: 'checked_background_color'}[option.checked]" style="cursor: pointer;">
+	                  		<span class="state-icon glyphicon" ng-class="{true: 'glyphicon-check checked_text_color', false: 'glyphicon-unchecked'}[option.checked]"></span><span class="text_width">{{option[opts.textField]}}</span> {{opts.unit}}
+	                  	</li>
+	                  	</div>
+	                </ul>
+        		</div>
+			</div>
+			
+<!-- 			 图片公用 -->
+<!-- 			<div ng-if="opts.type == 'image'" class="row image" ng-click="close($event)"> -->
+<!-- 			  <div class="col-xs-12 text-center"> -->
+<!-- 			        <p class="col-xs-12 text-center">{{opts.msgTop}}</p> -->
+<!--                     <img class="qrcode_img" src="{{opts.url}}"/> -->
+<!--               </div> -->
+<!-- 			</div> -->
+			
+			<!-- 图片相册 -->
+			<div ng-if="opts.type == 'picture'" class="row">
+		        <!-- The carousel -->
+		        <div id="transition-timer-carousel" class="carousel slide transition-timer-carousel" data-ride="carousel">
+					<!-- Indicators -->
+					<ol class="carousel-indicators">
+						<li data-target="#transition-timer-carousel" data-slide-to="0" class="active"></li>
+						<li data-target="#transition-timer-carousel" data-slide-to="1"></li>
+						<li data-target="#transition-timer-carousel" data-slide-to="2"></li>
+					</ol>
+		
+					<!-- Wrapper for slides -->
+					<div class="carousel-inner">
+						<div class="item active">
+		                    <img src="http://placehold.it/1200x400" />
+		                    <div class="carousel-caption">
+		                        <h1 class="carousel-caption-header">Slide 1</h1>
+		                        <p class="carousel-caption-text hidden-sm hidden-xs">
+		                            Lorem ipsum dolor sit amet, 
+		                        </p>
+		                    </div>
+		                </div>
+		                
+		                <div class="item">
+		                    <img src="http://placehold.it/1200x400/AAAAAA/888888" />
+		                    <div class="carousel-caption">
+		                        <h1 class="carousel-caption-header">Slide 2</h1>
+		                        <p class="carousel-caption-text hidden-sm hidden-xs">
+		                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse dignissim aliquet rutrum. Praesent vitae ante in nisi condimentum egestas. Aliquam.
+		                        </p>
+		                    </div>
+		                </div>
+		                
+		                <div class="item">
+		                    <img src="http://placehold.it/1200x400/888888/555555" />
+		                    <div class="carousel-caption">
+		                        <h1 class="carousel-caption-header">Slide 3</h1>
+		                        <p class="carousel-caption-text hidden-sm hidden-xs">
+		                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse dignissim aliquet rutrum. Praesent vitae ante in nisi condimentum egestas. Aliquam.
+		                        </p>
+		                    </div>
+		                </div>
+		            </div>
+		
+					<!-- Controls -->
+					<a class="left carousel-control" href="#transition-timer-carousel" data-slide="prev">
+						<span class="glyphicon glyphicon-chevron-left"></span>
+					</a>
+					<a class="right carousel-control" href="#transition-timer-carousel" data-slide="next">
+						<span class="glyphicon glyphicon-chevron-right"></span>
+					</a>
+		            
+		            <!-- Timer "progress bar" -->
+		            <hr class="transition-timer-carousel-progress-bar animate" />
+				</div>
+			</div>
+			
+			<div class="row dialog-footer">
+<!-- 			    <div ng-if="!opts.show" class="col-xs-12 image_bottom_msg"> -->
+<!-- 			      <p class="col-xs-12 text-center">{{opts.msgBottom}}</p> -->
+<!-- 			    </div> -->
+			    <!-- 按钮 -->
+        		<div class="col-xs-12">
+        			 <button ng-if="opts.confirm" type="submit" class="btn btn-primary col-xs-{{opts.cancel?'4 col-xs-offset-1':'12'}}" ng-click="confirm($event)">确定</button>
+                     <button ng-if="opts.cancel" class="btn btn-primary {{opts.confirm ? 'col-xs-4':'col-xs-8'}} col-xs-offset-2" ng-click="close($event)">取消</button>
+        		</div>
+        	</div>
+		</div>
+	</div>
+<!-- 模态框（Modal）End -->
+</div>

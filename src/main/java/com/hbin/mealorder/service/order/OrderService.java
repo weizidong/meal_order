@@ -5,8 +5,12 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
+import com.hbin.mealorder.model.dao.account.AccountDao;
+import com.hbin.mealorder.model.dao.meal.MealDao;
 import com.hbin.mealorder.model.dao.order.MealOrderDao;
 import com.hbin.mealorder.model.dao.order.MealOrderItemDao;
+import com.hbin.mealorder.model.entity.account.Account;
+import com.hbin.mealorder.model.entity.meal.Meal;
 import com.hbin.mealorder.model.entity.order.MealOrder;
 import com.hbin.mealorder.model.entity.order.MealOrderItem;
 import com.hbin.mealorder.model.entity.order.enums.MealOrderStatus;
@@ -22,6 +26,10 @@ public class OrderService {
 
 	private MealOrderItemDao orderItemDao = new MealOrderItemDao();
 
+	private AccountDao accountDao = new AccountDao();
+
+	private MealDao mealDao = new MealDao();
+
 	/**
 	 * 获取订单
 	 * 
@@ -33,7 +41,12 @@ public class OrderService {
 			return null;
 		}
 		List<MealOrderItem> items = orderItemDao.getByOrderId(mealOrder.getId());
-		logger.debug(items);
+		for (MealOrderItem item : items) {
+			Meal meal = mealDao.getById(item.getMealId());
+			Account account = accountDao.getById(item.getAccountId());
+			item.setAccount(account);
+			item.setMeal(meal);
+		}
 		mealOrder.setItems(items);
 		return mealOrder;
 	}
@@ -45,7 +58,7 @@ public class OrderService {
 	 */
 	public MealOrder creatMealOrder() {
 		MealOrder order = orderDao.getLast();
-		if(order != null && order.getStatus() == MealOrderStatus.正在点餐.getCode()){
+		if (order != null && order.getStatus() == MealOrderStatus.正在点餐.getCode()) {
 			throw new WebException(ResponseCode.错误请求);
 		}
 		order = MealOrder.generate();

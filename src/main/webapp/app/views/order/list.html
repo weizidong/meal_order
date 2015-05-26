@@ -1,12 +1,37 @@
 <div class="order_list_view full_screen" ng-controller="controller.order.list">
 
-	<div scroller-box class="full_screen wxbg">
+	<div scroller-box class="full_screen">
 		<div class="container-fluid list_box">
-		
-		
-		
+			<div class="row">
+				<span class="col-xs-4">订单日期：{{order.created|date:'yyyy-MM-dd'}}</span>
+				<span class="col-xs-4">总计：{{order.total}}元</span>
+				<span class="col-xs-4">状态：{{order.status?'已结束':'正在点餐'}}</span>
+			</div>
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>头像</th>
+						<th>名称</th>	
+						<th>菜名</th>
+						<th>单价</th>	
+						<th>数量</th>	
+						<th>总计</th>
+						<th>下单时间</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="item in order.items | orderBy:item.meal.name">
+						<td><img ng-src="item.account.headimg"></td>
+						<td>{{item.account.remarkName?item.account.remarkName:item.account.nickname}}<span class="glyphicon glyphicon-edit remark" ng-click="remark(item.account)"></span></td>	
+						<td>{{item.meal.name}}</td>
+						<td>{{item.meal.price+'元'}}</td>	
+						<td>{{item.quantity+'份'}}</td>	
+						<td>{{item.meal.price*item.quantity+'元'}}</td>
+						<td>{{item.created|date:'HH:mm:ss'}}</td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 	</div>
-
-
+	<dialog></dialog>
 </div>
